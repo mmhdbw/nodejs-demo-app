@@ -47,7 +47,13 @@ jobs:
         run: |
           npm run build
           npm run test
-  # push_to_Docker_Hub:
+
+      - uses: microsoft/DevSkim-Action@v1
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: devskim-results.sarif
+
+          # push_to_Docker_Hub:
   #     name: Push Images to DockerHub
   #     # The type of runner that the job will run on
   #     runs-on: ubuntu-latest
